@@ -9,6 +9,12 @@ import { AlbumComponent } from './album/album.component';
 import { ArtistComponent } from './artist/artist.component';
 import { SearchComponent } from './search/search.component';
 import { TrackComponent } from './track/track.component';
+import { SPOTIFY_INJECTABLES } from './spotify.injectables';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'search', pathMatch: 'full' },
+  { path: 'search', component: SearchComponent }
+]
 
 @NgModule({
   declarations: [
@@ -19,9 +25,15 @@ import { TrackComponent } from './track/track.component';
     TrackComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    SPOTIFY_INJECTABLES,
+    {provide: APP_BASE_HREF, useValue: '/'},
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
