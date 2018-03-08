@@ -9,10 +9,12 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/")
 public class AuthenticationController {
@@ -25,6 +27,7 @@ public class AuthenticationController {
     int expires_in;
     String scope;
   }
+
 
   @RequestMapping(method = RequestMethod.GET, value = "/token")
   public String getToken() throws Exception {
