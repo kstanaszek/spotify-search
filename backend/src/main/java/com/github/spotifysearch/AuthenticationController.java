@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class AuthenticationController {
-  private String CLIENT_ID = ""; // Your client id
-  private String CLIENT_SECRET = ""; // Your secret
+  private String CLIENT_ID = System.getenv("SPOTIFY_CLIENT_ID");
+  private String CLIENT_SECRET = System.getenv("SPOTIFY_CLIENT_SECRET");
 
   class SpotifyToken {
     String access_token;

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Http, RequestOptions, Response } from '@angular/http';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Http} from '@angular/http';
 
-import { SpotifyService } from '../spotify.service';
-import { HttpResponse } from 'selenium-webdriver/http';
+import {SpotifyService} from '../spotify.service';
 
 @Component({
   selector: 'app-search',
@@ -13,7 +12,6 @@ import { HttpResponse } from 'selenium-webdriver/http';
 export class SearchComponent implements OnInit {
   query: string;
   results: Object;
-  public token: string;
 
   constructor(private http: Http, private spotify: SpotifyService,
     private router: Router,
@@ -22,13 +20,6 @@ export class SearchComponent implements OnInit {
       .queryParams
       .subscribe(params => { this.query = params['query'] || ''; });
   }
-
-  getToken(): void {
-    this.http.get('http://localhost:8080/token')
-    .subscribe((res: Response) => {
-    this.token = res.text();
-    });
-}
 
   search(): void {
     console.log('this.query', this.query);
@@ -49,7 +40,7 @@ export class SearchComponent implements OnInit {
 
   submit(query: string): void {
     this.router.navigate(['search'], { queryParams: { query: query } })
-      .then(_ => this.search());
+      .then(() => this.search());
   }
 
   ngOnInit() {
