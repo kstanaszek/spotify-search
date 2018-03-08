@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Http, RequestOptions, Response } from '@angular/http';
 
 import { SpotifyService } from '../spotify.service';
+import { HttpResponse } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-search',
@@ -11,15 +13,22 @@ import { SpotifyService } from '../spotify.service';
 export class SearchComponent implements OnInit {
   query: string;
   results: Object;
-  public token: string
+  public token: string;
 
-  constructor(private spotify: SpotifyService,
+  constructor(private http: Http, private spotify: SpotifyService,
     private router: Router,
     private route: ActivatedRoute) {
     this.route
       .queryParams
-      .subscribe(params => { this.query = params['query'] || ''; })
+      .subscribe(params => { this.query = params['query'] || ''; });
   }
+
+  getToken(): void {
+    this.http.get('http://localhost:8080/token')
+    .subscribe((res: Response) => {
+    this.token = res.text();
+    });
+}
 
   search(): void {
     console.log('this.query', this.query);
@@ -28,7 +37,7 @@ export class SearchComponent implements OnInit {
     }
     this.spotify
       .searchTrack(this.query)
-      .subscribe((res: any) => this.renderResults(res))
+      .subscribe((res: any) => this.renderResults(res));
   }
 
   renderResults(res: any): void {
