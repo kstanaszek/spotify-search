@@ -1,7 +1,5 @@
-import { SpotifyService} from "./spotify.service";
-import { TOKEN } from './spotify.token'
- 
+import { SpotifyService } from './spotify.service';
+
 export const SPOTIFY_INJECTABLES: Array<any> = [
-    { provide: SpotifyService, useClass: SpotifyService },
-    { provide: 'TOKEN', useValue: TOKEN },
+  {provide: SpotifyService, useClass: SpotifyService},
 ];
