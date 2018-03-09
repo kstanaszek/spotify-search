@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
     this.route
       .queryParams
       .subscribe(params => {
-        this.query = params['query'] || '';
+        this.query = params['q'] || '';
       });
   }
 
@@ -40,7 +40,7 @@ export class SearchComponent implements OnInit {
   }
 
   submit(query: string): void {
-    this.router.navigate(['search'], {queryParams: {query: query}})
+    this.router.navigate(['search'], {queryParams: {q: query}})
       .then(() => this.search());
   }
 
