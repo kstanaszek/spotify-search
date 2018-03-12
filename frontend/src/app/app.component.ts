@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SpotifyService } from './spotify.service';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +6,4 @@ import { SpotifyService } from './spotify.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
 }
